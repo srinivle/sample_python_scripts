@@ -3,7 +3,7 @@ import pandas as pd
 from pprint import pprint
 from io import StringIO
 
-#Opening the Boto3 Session
+#Opening the Boto3 Session.
 session = boto3.Session(profile_name='dev', region_name='us-east-1')
 client1 = session.client('s3')
 client2 = session.client('ec2')
