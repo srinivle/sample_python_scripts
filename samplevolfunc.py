@@ -165,17 +165,17 @@ for each in range(0, len(df3['StartTime'])):
     # Calculate the difference between the two dates
     diff = relativedelta.relativedelta(date2, date1)
     # Print the number of days between the two dates
-    print(ite2.append(diff.days))
+    ite2.append(diff.days)
 #pprint(ite2)
 
-df3.loc[:, "Snapshot Days Difference"] = ite2
+#df3.loc[:, "Snapshot Days Difference"] = ite2
 
 data2.insert(8,"Snapshot Days Difference", ite2, allow_duplicates=True)
 data2.to_csv(r"C:\Users\pleel\OneDrive\Downloads\samplecodes-virtusa\python-codes\sanpshot-status2.csv", index=False)
 df4 = pd.read_csv(r"C:\Users\pleel\OneDrive\Downloads\samplecodes-virtusa\python-codes\sanpshot-status2.csv", usecols=['SnapshotId', 'StartTime', 'Snapshot Days Difference'])
 #pprint(df4)
 
-
+'''
 for each in range(0,len(df4['Snapshot Days Difference'])):
     if df4['Snapshot Days Difference'].values[each] > 5:
         response = client2.delete_snapshot(
@@ -183,4 +183,4 @@ for each in range(0,len(df4['Snapshot Days Difference'])):
     else:
         continue
 pprint("Successfully deleted the snapshots of volumes")
-
+'''
