@@ -8,7 +8,7 @@ session = boto3.Session(profile_name='dev', region_name='us-east-1')
 client1 = session.client('s3')
 client2 = session.client('ec2')
 
-# Reading the Object using Pandas
+# Reading the Object
 response = client1.get_object(Bucket='sample88563', Key='running-instances.csv')
 data = response['Body'].read().decode('utf-8')
 df = pd.read_csv(StringIO(data))
