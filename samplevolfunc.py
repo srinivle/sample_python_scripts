@@ -90,25 +90,7 @@ df1 = pd.read_csv(r"C:\Users\pleel\OneDrive\Downloads\samplecodes-virtusa\python
 pprint(df1)
 c = len(df1)
 
-'''
-for each3 in range(0,c):
-        response4 = client2.create_snapshot(
-            VolumeId=df1['VolumeId'].values[each3],
-            TagSpecifications=[
-                {   
-                    'ResourceType': 'snapshot', 
-                    'Tags': [
-                        {
-                            'Key': 'Env',
-                            'Value': 'Dev'
-                        },
-                    ]
-                },
-            ],            
-        )
-
-m = list_in_lists(c)
-'''
+# Describe instances using Tags
 response2 = client2.describe_snapshots(
     Filters=[
         {
@@ -133,26 +115,27 @@ for each in range(0,len(response2['Snapshots'])):
     b.append(response2['Snapshots'][each]['Tags'][0]['Value'])
     c.append(b)
 
-#pprint(c)
 
+# Creating the Snapshot Status
 header = ['SnapshotId', 'StartTime', 'State', 'StorageTier', 'VolumeId', 'VolumeSize', 'TagKey', 'TagValue']
 data2 = pd.DataFrame(c, columns=header)
 data2.to_csv(r"C:\Users\pleel\OneDrive\Downloads\samplecodes-virtusa\python-codes\sanpshot-status.csv", index=False)
 
 # Reading the latest written file from above
 df2 = pd.read_csv(r"C:\Users\pleel\OneDrive\Downloads\samplecodes-virtusa\python-codes\sanpshot-status.csv", usecols=['SnapshotId', 'StartTime'])
-#pprint(df2)
+
+# Trimming the StartTime column
 ite1 = []
 for ite in range(0,len(df2["StartTime"])):
     a = df2["StartTime"].values[ite]
     ite1.append(a.split(' ')[0])
-#pprint(ite1)
 
+# Updating the StartTime column using Pandas
 new_column = pd.Series(ite1, name='StartTime')
 data2.update(new_column)
 data2.to_csv(r"C:\Users\pleel\OneDrive\Downloads\samplecodes-virtusa\python-codes\sanpshot-status1.csv", index=False)
 df3 = pd.read_csv(r"C:\Users\pleel\OneDrive\Downloads\samplecodes-virtusa\python-codes\sanpshot-status1.csv", usecols=['SnapshotId', 'StartTime'])
-#pprint(df3)
+
 
 
 ite2 = []
@@ -166,21 +149,9 @@ for each in range(0, len(df3['StartTime'])):
     diff = relativedelta.relativedelta(date2, date1)
     # Print the number of days between the two dates
     ite2.append(diff.days)
-#pprint(ite2)
 
-#df3.loc[:, "Snapshot Days Difference"] = ite2
 
 data2.insert(8,"Snapshot Days Difference", ite2, allow_duplicates=True)
 data2.to_csv(r"C:\Users\pleel\OneDrive\Downloads\samplecodes-virtusa\python-codes\sanpshot-status2.csv", index=False)
 df4 = pd.read_csv(r"C:\Users\pleel\OneDrive\Downloads\samplecodes-virtusa\python-codes\sanpshot-status2.csv", usecols=['SnapshotId', 'StartTime', 'Snapshot Days Difference'])
-#pprint(df4)
 
-'''
-for each in range(0,len(df4['Snapshot Days Difference'])):
-    if df4['Snapshot Days Difference'].values[each] > 5:
-        response = client2.delete_snapshot(
-            SnapshotId=df4['SnapshotId'].values[each],)
-    else:
-        continue
-pprint("Successfully deleted the snapshots of volumes")
-'''
