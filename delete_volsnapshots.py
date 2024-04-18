@@ -16,4 +16,5 @@ for each in range(0,len(df4['Snapshot Days Difference'])):
     if df4['Snapshot Days Difference'].values[each] > 5:
         response = client2.delete_snapshot(
             SnapshotId=df4['SnapshotId'].values[each],)
+
 pprint("Successfully deleted the snapshots of volumes")
