@@ -8,7 +8,8 @@ import os
 session = boto3.Session(profile_name='dev', region_name='us-east-1')
 client1 = session.client('s3')
 client2 = session.client('ec2')
-
+pprint("Executing Deleting Snapshots script")
+pprint("Deleting Snapshots which are older than 5 days")
 df4 = pd.read_csv(r"C:\Users\pleel\OneDrive\Downloads\samplecodes-virtusa\python-codes\sanpshot-status2.csv", usecols=['SnapshotId', 'StartTime', 'Snapshot Days Difference'])
 
 for each in range(0,len(df4['Snapshot Days Difference'])):
