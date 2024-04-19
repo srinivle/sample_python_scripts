@@ -11,7 +11,7 @@ Resources Used:
 - AWS EBS Volumes Snapshot
 - AWS IAM
 - Tags
-- Python Pandas
+- Python Pandas and Dataframes
 - CSV
 - Python
 - Function referencings using import
