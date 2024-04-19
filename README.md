@@ -1,8 +1,21 @@
-# sample_python_scripts
+# Python_scripts
 1. Created py scripts to upload and read the csv file from S3, automate creation of volumes, snapshots and deletion of volumes, snapshots based on the retention of the days to keep and tags associated to it.
 2. Created py scripts to automate stopping of list of instances which are running
 3. Created py script to automate starting and stopping of specific instance.
 
+Resources Used: 
+- AWS Boto3
+- AWS S3
+- AWS EC2 Instance
+- AWS EBS Volumes
+- AWS EBS Volumes Snapshot
+- AWS IAM
+- Tags
+- Python Pandas
+- CSV
+- Python
+- Function referencings using import
+  
 Sample screenshots: 
 <img width="955" alt="image" src="https://github.com/srinivle/sample_python_scripts/assets/50224645/ea012011-517d-4a0f-9007-3f1feab19f7f">
 <img width="929" alt="image" src="https://github.com/srinivle/sample_python_scripts/assets/50224645/7e8a819a-deb7-449e-b19e-bc47da60212f">
