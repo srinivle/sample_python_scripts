@@ -21,23 +21,6 @@ pprint(df)
 b = len(df)
 pprint(b)
 
-def desc_tag_vol(descVol):
-    # Describe Tags for List of Volumes
-
-    for each1 in range(0,b):
-        response2 = client2.describe_tags(
-            Filters=[
-            {
-                'Name': 'tag:Env',
-                'Values': [
-                    'Dev',
-                ]
-            },
-        ],
-    )
-        
-    return response2
-
 # Describe Volumes for List of Volumes
 def list_in_lists(b):
 
