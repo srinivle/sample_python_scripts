@@ -15,6 +15,10 @@ Resources Used:
 - CSV
 - Python
 - Function referencings using import
+
+Flow Diagram: 
+<img width="321" alt="image" src="https://github.com/srinivle/sample_python_scripts/assets/50224645/ef45b0c7-8fc6-4027-8027-1b0e3ce63f28">
+
   
 Sample screenshots: 
 <img width="955" alt="image" src="https://github.com/srinivle/sample_python_scripts/assets/50224645/ea012011-517d-4a0f-9007-3f1feab19f7f">
