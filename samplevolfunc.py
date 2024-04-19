@@ -21,22 +21,6 @@ pprint(df)
 b = len(df)
 pprint(b)
 
-def create_tag_vol(tagvol):
-    # Creation of Tags for Volumes
-    for each in range(0,b):
-        response1 = client2.create_tags(                    
-                        Resources=[
-                            df['volume-id'].values[each],
-                        ],
-                        Tags=[
-                            {
-                                'Key': 'Env',
-                                'Value': 'Dev'
-                            },
-                        ]
-                    )
-    return response1
-
 def desc_tag_vol(descVol):
     # Describe Tags for List of Volumes
 
@@ -141,12 +125,12 @@ df3 = pd.read_csv(r"C:\Users\pleel\OneDrive\Downloads\samplecodes-virtusa\python
 ite2 = []
 for each in range(0, len(df3['StartTime'])):
     d2 = date.today()
-    t2 = d2.strftime("%d-%m-%Y")
-    date1 = datetime.strptime("2024-04-10", "%Y-%m-%d")
+    #t2 = d2.strftime("%Y-%m-%d")
+    #date1 = datetime.strptime(t2, "%Y-%m-%d")
     date2 = datetime.strptime(ite1[each], "%Y-%m-%d")
     
     # Calculate the difference between the two dates
-    diff = relativedelta.relativedelta(date2, date1)
+    diff = relativedelta.relativedelta(date2, d2)
     # Print the number of days between the two dates
     ite2.append(diff.days)
 
