@@ -15,7 +15,6 @@ Resources Used:
 - Python Pandas and Dataframes
 - CSV
 - Python
-- Function referencings using import
 - Amazon Rekognition (ML Service)
 
 Flow Diagram: 
