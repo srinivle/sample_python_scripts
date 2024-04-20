@@ -19,8 +19,7 @@ Resources Used:
 
 Flow Diagram: 
 
-<img width="1427" alt="image" src="https://github.com/srinivle/sample_python_scripts/assets/50224645/1a18fbd2-699e-4605-a941-3ba6fe0fae3a">
-
+<img width="1427" alt="image" src="https://github.com/srinivle/sample_python_scripts/assets/50224645/fad1b7b2-4e7f-4317-83fe-61a6b4ce9c70">
 
 
 Sample screenshots: 
