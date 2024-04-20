@@ -2,6 +2,7 @@
 1. Created py scripts to upload and read the csv file from S3, automate creation of volumes, snapshots and deletion of volumes, snapshots based on the retention of the days to keep and tags associated to it.
 2. Created py scripts to automate stopping of list of instances which are running
 3. Created py script to automate starting and stopping of specific instance.
+4. Created py script to use Amazon Rekognition - ML Service to analyze the image uploaded in S3 bucket.
 
 Resources Used: 
 - AWS Boto3
@@ -14,11 +15,11 @@ Resources Used:
 - Python Pandas and Dataframes
 - CSV
 - Python
-- Function referencings using import
+- Amazon Rekognition (ML Service)
 
 Flow Diagram: 
 
-<img width="802" alt="image" src="https://github.com/srinivle/sample_python_scripts/assets/50224645/7a160164-e784-4106-8cee-f87913e0958e">
+<img width="1427" alt="image" src="https://github.com/srinivle/sample_python_scripts/assets/50224645/fad1b7b2-4e7f-4317-83fe-61a6b4ce9c70">
 
 
 Sample screenshots: 
