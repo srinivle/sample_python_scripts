@@ -41,14 +41,14 @@ def list_in_lists(b):
         inside_list.append(response3['Volumes'][0]['Tags'][0]['Key'])
         inside_list.append(response3['Volumes'][0]['Tags'][0]['Value'])
         inside_list.append(response3['Volumes'][0]['State'])
-        inside_list.append(response3['Volumes'][0]['SnapshotId'])
+        #inside_list.append(response3['Volumes'][0]['SnapshotId'])
         
         outside_list.append(inside_list)
     return outside_list
 
 # Writing the CSV file
 k = list_in_lists(b)
-header = ['VolumeId', 'VolumeType', 'Size', 'TagKey', 'TagValue', 'State', 'SnapshotId']
+header = ['VolumeId', 'VolumeType', 'Size', 'TagKey', 'TagValue', 'State']
 data1 = pd.DataFrame(k, columns=header)
 data1.to_csv(r"C:\Users\pleel\OneDrive\Downloads\samplecodes-virtusa\python-codes\volume-status.csv", index=False)
 
