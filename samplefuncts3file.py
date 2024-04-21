@@ -8,7 +8,7 @@ session = boto3.Session(profile_name='dev', region_name='us-east-1')
 client1 = session.client('s3')
 client2 = session.client('ec2')
 client3 = session.resource('ec2')
-
+waiter = client2.get_waiter('instance_stopped')
 p = []
 for each in client3.instances.all():
     p.append(each.instance_id)
@@ -67,7 +67,9 @@ for each1 in range(0,b):
         response2 = client2.stop_instances(
                         InstanceIds=[
                             df1.iloc[each1]['InstanceId'],])
-        
+        waiter.wait(InstanceIds=[df1.iloc[each1]['InstanceId'],])
+
+
 # Writing the CSV file
 m = list_in_lists(b)
 data2 = pd.DataFrame(m, columns=header)
