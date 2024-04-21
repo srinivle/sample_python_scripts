@@ -2,8 +2,10 @@
 1. Created py scripts to upload and read the csv file from S3, automate creation of volumes, snapshots and deletion of volumes, snapshots based on the retention of the days to keep and tags associated to it.
 2. Created py scripts to automate stopping of list of instances which are running
 3. Created py script to automate starting and stopping of specific instance.
-4. Created py script to use Amazon Rekognition - ML Service to analyze the image uploaded in S3 bucket.
-5. Created py script to consolidate different csv reports/files to single xlsx file with respective worksheets of the csv reports.  
+4. Created Lambda function with python runtime & handler to create/start/stop ec2 instances.
+5. Created Lambda function with python runtime & handler to work with S3 objects via Event Driven way.  
+6. Created py script to use Amazon Rekognition - ML Service to analyze the image uploaded in S3 bucket.
+7. Created py script to consolidate different csv reports/files to single xlsx file with respective worksheets of the csv reports.  
 
 Resources Used: 
 - AWS Boto3
