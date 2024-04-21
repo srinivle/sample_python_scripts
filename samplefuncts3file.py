@@ -7,6 +7,21 @@ from io import StringIO
 session = boto3.Session(profile_name='dev', region_name='us-east-1')
 client1 = session.client('s3')
 client2 = session.client('ec2')
+client3 = session.resource('ec2')
+
+p = []
+for each in client3.instances.all():
+    p.append(each.instance_id)
+
+pprint(p)
+header = ['instance-id']
+data = pd.DataFrame(p, columns=header)
+data.to_csv(r"C:\Users\pleel\OneDrive\Downloads\samplecodes-virtusa\python-codes\list-of-instances.csv", index=False)
+
+
+client1.upload_file('C:\\Users\\pleel\\OneDrive\\Downloads\\samplecodes-virtusa\\python-codes\\list-of-instances.csv', 'sample88563', 'list-of-instances.csv')
+print("Successfully uploaded the 'list-of-instances.csv' file to AWS S3 bucket")
+
 
 # Reading the Object
 response = client1.get_object(Bucket='sample88563', Key='list-of-instances.csv')
@@ -55,8 +70,8 @@ for each1 in range(0,b):
         
 # Writing the CSV file
 m = list_in_lists(b)
-data1 = pd.DataFrame(m, columns=header)
-data1.to_csv(r"C:\Users\pleel\OneDrive\Downloads\samplecodes-virtusa\python-codes\stopped-instances.csv", index=False)
+data2 = pd.DataFrame(m, columns=header)
+data2.to_csv(r"C:\Users\pleel\OneDrive\Downloads\samplecodes-virtusa\python-codes\stopped-instances.csv", index=False)
 
 # Uploading the latest status to S3 bucket
 client1.upload_file('C:\\Users\\pleel\\OneDrive\\Downloads\\samplecodes-virtusa\\python-codes\\stopped-instances.csv', 'sample88563', 'stopped-instances.csv')

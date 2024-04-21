@@ -14,7 +14,7 @@ path = 'C:\\Users\\pleel\\OneDrive\\Downloads\\samplecodes-virtusa\\python-codes
 all_files = glob.glob(os.path.join(path, "*.csv"))
 
 # Create a Pandas Excel writer using XlsxWriter as the engine.
-writer = pd.ExcelWriter("volumeinfo.xlsx", engine="xlsxwriter")
+writer = pd.ExcelWriter("instance-status-info.xlsx", engine="xlsxwriter")
 
 # Collect, Read and Loop all the CSV files and convert them to respective Excel Sheets in a single Excel file 
 for f in all_files:
@@ -26,5 +26,5 @@ writer.close()
 
 time.sleep(3)
 
-client1.upload_file('C:\\Users\\pleel\\OneDrive\\Downloads\\samplecodes-virtusa\\volumeinfo.xlsx', 'sample88563', 'volumeinfo.xlsx')
+client1.upload_file('C:\\Users\\pleel\\OneDrive\\Downloads\\samplecodes-virtusa\\instance-status-info.xlsx', 'sample88563', 'instance-status-info.xlsx')
 print("Successfully uploaded the file to AWS S3 bucket")
