@@ -3,6 +3,7 @@
 2. Created py scripts to automate stopping of list of instances which are running
 3. Created py script to automate starting and stopping of specific instance.
 4. Created py script to use Amazon Rekognition - ML Service to analyze the image uploaded in S3 bucket.
+5. Created py script to consolidate different csv reports/files to single xlsx file with respective worksheets of the csv reports.  
 
 Resources Used: 
 - AWS Boto3
@@ -14,6 +15,7 @@ Resources Used:
 - Tags
 - Python Pandas and Dataframes
 - CSV
+- Xlsx
 - Python
 - Amazon Rekognition (ML Service)
 
