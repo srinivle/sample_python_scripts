@@ -7,6 +7,7 @@
 
 Resources Used: 
 - AWS Boto3
+- AWS Lambda
 - AWS S3
 - AWS EC2 Instance
 - AWS EBS Volumes
