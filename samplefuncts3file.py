@@ -11,10 +11,13 @@ client3 = session.resource('ec2')
 waiter = client2.get_waiter('instance_stopped')
 p = []
 for each in client3.instances.all():
-    p.append(each.instance_id)
+    q = []
+    q.append(each.instance_id)
+    q.append(each.state['Name'])
+    p.append(q)
 
 pprint(p)
-header = ['instance-id']
+header = ['instance-id', 'state']
 data = pd.DataFrame(p, columns=header)
 data.to_csv(r"C:\Users\pleel\OneDrive\Downloads\samplecodes-virtusa\python-codes\list-of-instances.csv", index=False)
 
@@ -36,19 +39,19 @@ b = len(df)
 def list_in_lists(b):
     outside_list = []
     for each in range(0,b):
-        inside_list = []      
-        response1 = client2.describe_instances(
-                            InstanceIds=[
-                                df['instance-id'].values[each],
-                            ],
-                            )
-
-        inside_list.append(response1['Reservations'][0]['Instances'][0]['InstanceId'])
-        inside_list.append(response1['Reservations'][0]['Instances'][0]['InstanceType'])    
-        inside_list.append(response1['Reservations'][0]['Instances'][0]['PrivateIpAddress'])
-        inside_list.append(response1['Reservations'][0]['Instances'][0]['RootDeviceType'])
-        inside_list.append(response1['Reservations'][0]['Instances'][0]['State']['Name'])
-        outside_list.append(inside_list)
+        if df['state'].values[each] == 'running':
+            inside_list = []      
+            response1 = client2.describe_instances(
+                                InstanceIds=[
+                                    df['instance-id'].values[each],
+                                ],
+                                )
+            inside_list.append(response1['Reservations'][0]['Instances'][0]['InstanceId'])
+            inside_list.append(response1['Reservations'][0]['Instances'][0]['InstanceType'])    
+            inside_list.append(response1['Reservations'][0]['Instances'][0]['PrivateIpAddress'])
+            inside_list.append(response1['Reservations'][0]['Instances'][0]['RootDeviceType'])
+            inside_list.append(response1['Reservations'][0]['Instances'][0]['State']['Name'])
+            outside_list.append(inside_list)
     return outside_list    
 
 # Writing the CSV file
@@ -62,17 +65,30 @@ df1 = pd.read_csv(r"C:\Users\pleel\OneDrive\Downloads\samplecodes-virtusa\python
 pprint(df1)
 
 # Stopping those running instances
-for each1 in range(0,b):
+for each1 in range(0,len(df1)):
     if df1.iloc[each1]['State'] == 'running':
         response2 = client2.stop_instances(
                         InstanceIds=[
                             df1.iloc[each1]['InstanceId'],])
         waiter.wait(InstanceIds=[df1.iloc[each1]['InstanceId'],])
 
+x = []
+for each in range(0,len(df1)):
+    y = []      
+    response3 = client2.describe_instances(
+                        InstanceIds=[
+                            df1['InstanceId'].values[each],
+                        ],
+                        )
+    y.append(response3['Reservations'][0]['Instances'][0]['InstanceId'])
+    y.append(response3['Reservations'][0]['Instances'][0]['InstanceType'])    
+    y.append(response3['Reservations'][0]['Instances'][0]['PrivateIpAddress'])
+    y.append(response3['Reservations'][0]['Instances'][0]['RootDeviceType'])
+    y.append(response3['Reservations'][0]['Instances'][0]['State']['Name'])
+    x.append(y)
 
 # Writing the CSV file
-m = list_in_lists(b)
-data2 = pd.DataFrame(m, columns=header)
+data2 = pd.DataFrame(x, columns=header)
 data2.to_csv(r"C:\Users\pleel\OneDrive\Downloads\samplecodes-virtusa\python-codes\stopped-instances.csv", index=False)
 
 # Uploading the latest status to S3 bucket
