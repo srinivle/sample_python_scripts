@@ -15,6 +15,8 @@ Resources Used:
 - AWS EC2 Instance
 - AWS EBS Volumes
 - AWS EBS Volumes Snapshot
+- AWS Billing and Cost Management
+- AWS Cost Explorer
 - AWS IAM
 - Tags
 - Python Pandas and Dataframes
