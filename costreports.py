@@ -33,7 +33,7 @@ response = client3.get_cost_and_usage(
             'Key': 'SERVICE'
         },
     ],
-    #NextPageToken='string'
+    
     
 )
 
@@ -49,8 +49,9 @@ p.append(response['ResultsByTime'][0]['Groups'][7]['Keys'][0])
 p.append(response['ResultsByTime'][0]['Groups'][8]['Keys'][0])
 p.append(response['ResultsByTime'][0]['Groups'][9]['Keys'][0])
 p.append(response['ResultsByTime'][0]['Groups'][10]['Keys'][0])
+p.append('Total Cost(including Tax)')
 
-pprint(p)
+
 a = []
 #a.append(p)
 for each in range(0,11):
@@ -62,14 +63,27 @@ for each in range(0,11):
     b.append(response['ResultsByTime'][0]['Groups'][each]['Metrics']['NetUnblendedCost']['Amount'])
     a.append(b)
 
-pprint(a)
 
+# Creating a CSV file using Dataframe from the above data/list
 header = ['AmortizedCost(Amounts in USD)', 'NetAmortizedCost(Amounts in USD)', 'BlendedCost(Amounts in USD)', 'UnblendedCost(Amounts in USD)', 'NetUnblendedCost(Amounts in USD)']
 data = pd.DataFrame(a, columns=header)
+data.to_csv(r"C:\Users\pleel\OneDrive\Downloads\samplecodes-virtusa\python-codes\aws-services-costreport1.csv", index=False)
+df = pd.read_csv(r"C:\Users\pleel\OneDrive\Downloads\samplecodes-virtusa\python-codes\aws-services-costreport1.csv")
+
+# Performing Total Cost of the items mentioned in the header list from above
+b = []
+for each in header:
+    Total = df[each].sum()
+    b.append(Total)
+data.loc[len(data.index)] = b
+data = data.reset_index(drop=True)
+
+# Adding new Column with the List of Services for which cost incurred and Generating the final report
 new_col = pd.DataFrame(p)
 data.insert(0,'List of Services', new_col, allow_duplicates=True)
 data.to_csv(r"C:\Users\pleel\OneDrive\Downloads\samplecodes-virtusa\python-codes\aws-services-costreport.csv", index=False)
+pprint(data)
+
+# Uploading the Latest CSV File report of the Services for which Cost incurred
 client1.upload_file('C:\\Users\\pleel\\OneDrive\\Downloads\\samplecodes-virtusa\\python-codes\\aws-services-costreport.csv', 'sample88563', 'aws-services-costreport.csv')
 print("Successfully uploaded the 'AWS Services Cost Usage Report' file to AWS S3 bucket")
-
-
